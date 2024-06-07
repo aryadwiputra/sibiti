@@ -23,11 +23,11 @@
     </style>
 </head>
 
-<body class="font-sans antialiased bg-[#E9E9E9]" style="font-family: 'Jost', sans-serif;" onload="setInitialTheme()">
+<body class="font-sans antialiased bg-[#E9E9E9]" style="font-family: 'Jost', sans-serif;">
     @inertia
     <script>
         function setInitialTheme() {
-            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const darkMode = localStorage.getItem('darkMode') === 'false';
             if (darkMode) {
                 document.body.classList.add('dark');
                 document.body.classList.remove('light');
