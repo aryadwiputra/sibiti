@@ -30,7 +30,7 @@ export default function Create() {
     const saveUser = async (e) => {
         e.preventDefault();
 
-        post(route('apps.users.store'), {
+        post(route('users.store'), {
             onSuccess: () => {
                 toast('Data berhasil disimpan', {
                     icon: '👏',

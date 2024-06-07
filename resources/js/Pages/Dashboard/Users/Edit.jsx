@@ -36,7 +36,7 @@ export default function Edit() {
     const updateUser = async (e) => {
         e.preventDefault();
 
-        post(route('apps.users.update', user.id), {
+        post(route('users.update', user.id), {
             onSuccess: () => {
                 toast('Data berhasil disimpan', {
                     icon: '👏',
