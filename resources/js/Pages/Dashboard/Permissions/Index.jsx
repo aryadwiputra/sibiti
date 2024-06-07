@@ -1,6 +1,6 @@
-import Pagination from '@/Components/Pagination';
-import Search from '@/Components/Search';
-import Table from '@/Components/Table'
+import Pagination from '@/Components/Dashboard/Pagination';
+import Search from '@/Components/Dashboard/Search';
+import Table from '@/Components/Dashboard/Table'
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { Head, usePage } from '@inertiajs/react'
 import { IconDatabaseOff, IconUserBolt } from '@tabler/icons-react';
@@ -15,7 +15,7 @@ export default function Index() {
             <Head title='Has Akses' />
             <div className='mb-5'>
                 <Search
-                    url={route('apps.permissions.index')}
+                    url={route('permissions.index')}
                     placeholder='Cari data berdasarkan nama hak akses...'
                 />
             </div>

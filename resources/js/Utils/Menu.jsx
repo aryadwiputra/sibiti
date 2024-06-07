@@ -27,36 +27,36 @@ export default function Menu() {
             details: [
                 {
                     title: 'Hak Akses',
-                    href: '/apps/permissions',
-                    active: url.startsWith('/apps/permissions') ? true : false,
+                    href: route('permissions.index'),
+                    active: url.startsWith('/dashboard/permissions') ? true : false,
                     icon: <IconUserBolt size={20} strokeWidth={1.5} />,
-                    // permissions: hasAnyPermission(['permissions-access']),
+                    permissions: hasAnyPermission(['permissions-access']),
                 },
                 {
                     title: 'Akses Group',
-                    href: '/apps/roles',
-                    active: url.startsWith('/apps/roles') ? true : false,
+                    href: route('roles.index'),
+                    active: url.startsWith('/dashboard/roles') ? true : false,
                     icon: <IconUserShield size={20} strokeWidth={1.5} />,
-                    // permissions: hasAnyPermission(['roles-access']),
+                    permissions: hasAnyPermission(['roles-access']),
                 },
                 {
                     title: 'Pengguna',
                     icon: <IconUsers size={20} strokeWidth={1.5} />,
-                    // permissions: hasAnyPermission(['users-access']),
+                    permissions: hasAnyPermission(['users-access']),
                     subdetails: [
                         {
                             title: 'Data Pengguna',
-                            href: '/apps/users',
+                            href: route('users.index'),
                             icon: <IconTable size={20} strokeWidth={1.5} />,
-                            active: url === '/apps/users' ? true : false,
-                            // permissions: hasAnyPermission(['users-access']),
+                            active: url === '/users' ? true : false,
+                            permissions: hasAnyPermission(['users-access']),
                         },
                         {
                             title: 'Tambah Data Pengguna',
-                            href: '/apps/users/create',
+                            href: route('users.create'),
                             icon: <IconCirclePlus size={20} strokeWidth={1.5} />,
-                            active: url === '/apps/users/create' ? true : false,
-                            // permissions: hasAnyPermission(['users-create']),
+                            active: url === '/users/create' ? true : false,
+                            permissions: hasAnyPermission(['users-create']),
                         },
                     ]
                 }
