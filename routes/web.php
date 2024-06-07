@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,11 +32,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     // dashboard route
     Route::get('/', DashboardController::class)->name('dashboard');
     // permissions route
-    // Route::get('/permissions', PermissionController::class)->name('permissions.index');
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
     // roles route
-    // Route::resource('/roles', RoleController::class)->except(['create', 'edit', 'show']);
+    Route::resource('/roles', RoleController::class)->except(['create', 'edit', 'show']);
     // users route
-    // Route::resource('/users', UserController::class)->except('show');
+    Route::resource('/users', UserController::class)->except('show');
 });
 
 require __DIR__ . '/auth.php';
