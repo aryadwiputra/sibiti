@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Inertia\Inertia;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 
@@ -26,7 +26,7 @@ class UserController extends Controller
             ->withQueryString();
 
         // render view
-        return inertia('Dashboard/Users/Index', [
+        return Inertia::render('Dashboard/Users/Index', [
             'users' => $users
         ]);
     }
@@ -43,7 +43,7 @@ class UserController extends Controller
             ->get();
 
         // render view
-        return inertia('Dashboard/Users/Create', [
+        return Inertia::render('Dashboard/Users/Create', [
             'roles' => $roles
         ]);
     }
@@ -68,20 +68,10 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
-
         // get all role data
         $roles = Role::query()
             ->select('id', 'name')
@@ -92,7 +82,7 @@ class UserController extends Controller
         $user->load(['roles' => fn($query) => $query->select('id', 'name'), 'roles.permissions' => fn($query) => $query->select('id', 'name')]);
 
         // render view
-        return inertia('Dashboard/Users/Edit', [
+        return Inertia::render('Dashboard/Users/Edit', [
             'roles' => $roles,
             'user' => $user
         ]);
@@ -101,10 +91,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, string $id)
+    public function update(UserRequest $request, User $user)
     {
-        $user = User::findOrFail($id);
-
         // check if user send request password
         if ($request->password)
             // update user data password
@@ -127,7 +115,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $ids = explode(',', $id);
 
