@@ -16,9 +16,9 @@ export default function Menu() {
                 {
                     title: 'Dashboard',
                     href: route('dashboard'),
-                    active: url.startsWith('/apps/dashboard') ? true : false,
+                    active: url.startsWith('/dashboard') ? true : false,
                     icon: <IconLayout2 size={20} strokeWidth={1.5} />,
-                    // permissions: hasAnyPermission(['dashboard-access']),
+                    permissions: hasAnyPermission(['dashboard-access']),
                 },
             ]
         },
