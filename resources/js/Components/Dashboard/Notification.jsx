@@ -4,41 +4,6 @@ import { IconBell, IconDots, IconCircleCheck, IconPackage, IconCashBanknote, Ico
 export default function Notification() {
 
     const data = [
-        {
-            user: 'Rafi Taufiqurrahman',
-            title: 'Your order has been shiped.',
-            time: '1h',
-            is_read: 1,
-            icon: <IconPhoto size={24} strokeWidth={1.5} className='text-gray-500 dark:text-gray-400' />
-        },
-        {
-            user: 'John Doe',
-            title: 'Your payment was successfull.',
-            time: '15m',
-            is_read: 0,
-            icon: <IconCashBanknote size={24} strokeWidth={1.5} className='text-gray-500 dark:text-gray-400' />
-        },
-        {
-            user: 'Bob Brown',
-            title: 'A new product is avaliable.',
-            time: '1d',
-            is_read: 1,
-            icon: <IconPackage size={24} strokeWidth={1.5} className='text-gray-500 dark:text-gray-400' />
-        },
-        {
-            user: 'Charlie Davis',
-            title: 'Your account has been approved.',
-            time: '1w',
-            is_read: 1,
-            icon: <IconBell size={24} strokeWidth={1.5} className='text-gray-500 dark:text-gray-400' />
-        },
-        {
-            user: 'George Hill',
-            title: 'Your message has been replied.',
-            time: '3d',
-            is_read: 0,
-            icon: <IconMessage size={24} strokeWidth={1.5} className='text-gray-500 dark:text-gray-400' />
-        },
     ]
 
     // define state isMobile
@@ -98,11 +63,13 @@ export default function Notification() {
                     >
                         <Menu.Items className='absolute rounded-lg w-[500px] border md:right-0 z-[100] bg-white dark:bg-gray-950 dark:border-gray-900'>
                             <div className='flex justify-between items-center gap-2 p-4 border-b dark:border-gray-900'>
-                                <div className='text-lg font-bold text-gray-700 dark:text-gray-200'>Notifications</div>
+                                <div className='text-lg font-bold text-gray-700 dark:text-gray-200'>Notifikasi</div>
                                 <IconDots className='text-gray-500 dark:text-gray-200' size={24} />
                             </div>
                             <div className='p-4'>
                                 <div className='flex flex-col gap-2 items-start h-60 overflow-y-auto'>
+                                    {/* If data is empty */}
+                                    {data.length === 0 && <div className='text-sm text-gray-500 dark:text-gray-400'>Tidak ada notifikasi</div>}
                                     {data.map((data, i) => (
                                         <div className='flex items-center justify-between w-full p-4 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-900 ' key={i}>
                                             <div className='flex items-center gap-4'>
@@ -137,6 +104,7 @@ export default function Notification() {
                         </div>
                         <div className='p-4'>
                             <div className='flex flex-col gap-2 items-start overflow-y-auto h-screen'>
+
                                 {data.map((data, i) => (
                                     <div className='flex items-center justify-between w-full p-4 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-900 ' key={i}>
                                         <div className='flex items-center gap-4'>

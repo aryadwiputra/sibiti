@@ -53,7 +53,7 @@ export default function Index() {
     // define function update role by id
     const updateRole = async (e) => {
         e.preventDefault();
-
+        console.log(data)
         post(route('roles.update', data.id), {
             onSuccess: () => {
                 setData({
