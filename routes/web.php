@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -14,14 +15,25 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard/Index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard/Index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+    // dashboard route
+    Route::get('/', DashboardController::class)->name('dashboard');
+    // permissions route
+    // Route::get('/permissions', PermissionController::class)->name('permissions.index');
+    // roles route
+    // Route::resource('/roles', RoleController::class)->except(['create', 'edit', 'show']);
+    // users route
+    // Route::resource('/users', UserController::class)->except('show');
 });
 
 require __DIR__ . '/auth.php';
