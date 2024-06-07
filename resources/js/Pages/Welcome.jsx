@@ -1,8 +1,10 @@
+import { Head } from '@inertiajs/react';
 import React from 'react';
 
 export default function Welcome() {
     return (
         <div className='min-h-screen flex items-center justify-center py-auto'>
+            <Head title="Beranda" />
             <div id="hero-section"
                 className="max-w-[1200px] mx-auto w-full flex flex-col gap-10 pb-[50px] bg-[url('assets/background/Hero-Banner.png')] bg-center bg-no-repeat bg-cover rounded-[32px] overflow-hidden">
                 <nav className="flex justify-between items-center pt-6 px-[50px]">
