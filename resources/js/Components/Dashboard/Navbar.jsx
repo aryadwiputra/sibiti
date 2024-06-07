@@ -57,9 +57,9 @@ export default function Navbar({ toggleSidebar, themeSwitcher, darkMode }) {
             <div className='flex items-center gap-4'>
                 <div className='flex flex-row items-center gap-1 border-r-2 border-double px-4 dark:border-gray-900'>
                     <div className='flex flex-row gap-2'>
-                        <button className='p-2 rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-900 ' onClick={themeSwitcher}>
+                        {/* <button className='p-2 rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-900 ' onClick={themeSwitcher}>
                             {darkMode ? <IconSun strokeWidth={1.5} size={18} /> : <IconMoon strokeWidth={1.5} size={18} />}
-                        </button>
+                        </button> */}
                         <Notification />
                     </div>
                 </div>
