@@ -20,6 +20,8 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+        "@ckeditor/ckeditor5-react": "^7.0.0",
         "@tabler/icons-react": "^3.5.0",
         "chart.js": "^4.4.3",
         "react-chartjs-2": "^5.2.0",
