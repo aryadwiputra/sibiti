@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { IconCirclePlus, IconLayout2, IconTable, IconUserBolt, IconUserShield, IconUsers } from '@tabler/icons-react';
+import { IconCirclePlus, IconLayout2, IconSchool, IconTable, IconUserBolt, IconUserShield, IconUsers } from '@tabler/icons-react';
 import hasAnyPermission from './Permission';
 import React from 'react'
 
@@ -19,6 +19,18 @@ export default function Menu() {
                     active: url.startsWith('/dashboard') ? true : false,
                     icon: <IconLayout2 size={20} strokeWidth={1.5} />,
                     permissions: hasAnyPermission(['dashboard-access']),
+                },
+            ]
+        },
+        {
+            title: 'Master Data',
+            details: [
+                {
+                    title: 'Kelas',
+                    href: route('classrooms.index'),
+                    active: url.startsWith('/classrooms/') ? true : false,
+                    icon: <IconSchool size={20} strokeWidth={1.5} />,
+                    // permissions: hasAnyPermission(['']),
                 },
             ]
         },
