@@ -16,13 +16,18 @@
     @viteReactRefresh
     @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
     @inertiaHead
+    <style>
+        body.dark {
+            background-color: rgb(3 7 18 / 0.9);
+        }
+    </style>
 </head>
 
-<body class="font-sans antialiased bg-[#E9E9E9]" style="font-family: 'Jost', sans-serif;" theme="light">
+<body class="font-sans antialiased bg-[#E9E9E9]" style="font-family: 'Jost', sans-serif;" onload="setInitialTheme()">
     @inertia
-    {{-- <script>
+    <script>
         function setInitialTheme() {
-            const darkMode = localStorage.getItem('darkMode') === 'false';
+            const darkMode = localStorage.getItem('darkMode') === 'true';
             if (darkMode) {
                 document.body.classList.add('dark');
                 document.body.classList.remove('light');
@@ -31,7 +36,7 @@
                 document.body.classList.remove('dark');
             }
         }
-    </script> --}}
+    </script>
 </body>
 
 </html>
