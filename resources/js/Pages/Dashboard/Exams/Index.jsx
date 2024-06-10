@@ -6,8 +6,8 @@ import Table from '@/Components/Dashboard/Table';
 import Widget from '@/Components/Dashboard/Widget';
 import Modal from '@/Components/Dashboard/Modal';
 import DashboardLayout from '@/Layouts/DashboardLayout';
-import { Head, useForm, usePage } from '@inertiajs/react';
-import { IconBox, IconChartBar, IconCirclePlus, IconDatabaseOff, IconPackage, IconPencilCheck, IconPencilCog, IconTrash, IconUserShield, IconUsers, IconWallet } from '@tabler/icons-react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
+import { IconBox, IconChartBar, IconCirclePlus, IconDatabaseOff, IconEye, IconPackage, IconPencilCheck, IconPencilCog, IconTrash, IconUserShield, IconUsers, IconWallet } from '@tabler/icons-react';
 import Input from '@/Components/Dashboard/Input';
 import InputSelect from '@/Components/Dashboard/InputSelect';
 import { useState } from 'react';
@@ -318,12 +318,22 @@ export default function Index({ lessons, classrooms, exams }) {
                                     <Table.Td>
                                         <div className='flex gap-2 md:justify-center'>
                                             <Button
+                                                type={'link'}
+                                                // icon={<IconEye size={16} strokeWidth={1.5} />}
+                                                className={'border bg-green-100 border-green-300 text-green-500 hover:bg-green-200 dark:bg-green-950 dark:border-green-800 dark:text-gray-300  dark:hover:bg-green-900'}
+                                                href={route('exams.show', exam.id)}
+                                                label={'Detail'}
+                                            />
+                                            <Button
                                                 type={'modal'}
                                                 icon={<IconPencilCog size={16} strokeWidth={1.5} />}
                                                 className={'border bg-orange-100 border-orange-300 text-orange-500 hover:bg-orange-200 dark:bg-orange-950 dark:border-orange-800 dark:text-gray-300  dark:hover:bg-orange-900'}
                                                 onClick={() => {
-                                                    const selectedStudentLesson = lessons.find(g => g.id === exam.lesson.title);
+                                                    const selectedStudentLesson = lessons.find(g => g.id === exam.lesson_id);
                                                     const selectedStudentClassroom = classrooms.find(c => c.id === exam.classroom_id);
+                                                    const selectedRandomQuestion = is_selected.find(r => r.id === exam.random_question);
+                                                    const selectedRandomAnswer = is_selected.find(r => r.id === exam.random_answer);
+                                                    const selectedShowAnswer = is_selected.find(r => r.id === exam.show_answer);
 
                                                     setData({
                                                         id: exam.id,
@@ -340,6 +350,9 @@ export default function Index({ lessons, classrooms, exams }) {
                                                     });
                                                     setSelectedLesson(selectedStudentLesson);
                                                     setSelectedClassroom(selectedStudentClassroom);
+                                                    setSelectedRandomQuestion(selectedRandomQuestion);
+                                                    setSelectedRandomAnswer(selectedRandomAnswer);
+                                                    setSelectedShowAnswer(selectedShowAnswer);
                                                 }}
                                             />
                                             <Button
