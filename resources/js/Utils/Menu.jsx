@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { IconCirclePlus, IconLayout2, IconSchool, IconTable, IconUserBolt, IconUserShield, IconUserSquare, IconUsers } from '@tabler/icons-react';
+import { IconBooks, IconCirclePlus, IconLayout2, IconSchool, IconTable, IconUserBolt, IconUserShield, IconUserSquare, IconUsers } from '@tabler/icons-react';
 import hasAnyPermission from './Permission';
 import React from 'react'
 
@@ -37,6 +37,13 @@ export default function Menu() {
                     href: route('students.index'),
                     active: url.startsWith('/students/') ? true : false,
                     icon: <IconUserSquare size={20} strokeWidth={1.5} />,
+                    // permissions: hasAnyPermission(['']),
+                },
+                {
+                    title: 'Mata Pelajaran',
+                    href: route('lessons.index'),
+                    active: url.startsWith('/lessons/') ? true : false,
+                    icon: <IconBooks size={20} strokeWidth={1.5} />,
                     // permissions: hasAnyPermission(['']),
                 },
             ]
