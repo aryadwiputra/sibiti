@@ -15,8 +15,8 @@ class ClassroomController extends Controller
     public function index()
     {
         //get classrooms
-        $classrooms = Classroom::when(request()->q, function ($classrooms) {
-            $classrooms = $classrooms->where('title', 'like', '%' . request()->q . '%');
+        $classrooms = Classroom::query()->when(request()->search, function ($classrooms) {
+            $classrooms = $classrooms->where('title', 'like', '%' . request()->search . '%');
         })->orderBy('title', 'ASC')->latest()->paginate(5)->withQueryString();
 
         //append query string to pagination links
