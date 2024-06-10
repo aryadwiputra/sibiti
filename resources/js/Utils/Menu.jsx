@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { IconBooks, IconCirclePlus, IconLayout2, IconSchool, IconTable, IconUserBolt, IconUserShield, IconUserSquare, IconUsers } from '@tabler/icons-react';
+import { IconBooks, IconCirclePlus, IconClockHour6, IconFileCertificate, IconFileDescription, IconLayout2, IconSchool, IconTable, IconUserBolt, IconUserShield, IconUserSquare, IconUsers } from '@tabler/icons-react';
 import hasAnyPermission from './Permission';
 import React from 'react'
 
@@ -44,8 +44,28 @@ export default function Menu() {
                     href: route('lessons.index'),
                     active: url.startsWith('/lessons/') ? true : false,
                     icon: <IconBooks size={20} strokeWidth={1.5} />,
-                    // permissions: hasAnyPermission(['']),
-                },
+                    permissions: hasAnyPermission(['']),
+                }, {
+                    title: 'Ujian',
+                    icon: <IconFileCertificate size={20} strokeWidth={1.5} />,
+                    permissions: hasAnyPermission(['users-access']),
+                    subdetails: [
+                        {
+                            title: 'Data Ujian',
+                            href: route('exams.index'),
+                            icon: <IconFileDescription size={20} strokeWidth={1.5} />,
+                            active: url === '/users' ? true : false,
+                            permissions: hasAnyPermission(['users-access']),
+                        },
+                        {
+                            title: 'Sesi Ujian',
+                            // href: route('.create'),
+                            icon: <IconClockHour6 size={20} strokeWidth={1.5} />,
+                            active: url === '/users/create' ? true : false,
+                            permissions: hasAnyPermission(['users-create']),
+                        },
+                    ]
+                }
             ]
         },
         {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::resource('classrooms', ClassroomController::class);
     Route::resource('students', StudentController::class);
     Route::resource('lessons', LessonController::class);
+    Route::resource('exams', ExamController::class);
 });
 
 require __DIR__ . '/auth.php';
