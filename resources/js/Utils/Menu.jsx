@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { IconCirclePlus, IconLayout2, IconSchool, IconTable, IconUserBolt, IconUserShield, IconUsers } from '@tabler/icons-react';
+import { IconCirclePlus, IconLayout2, IconSchool, IconTable, IconUserBolt, IconUserShield, IconUserSquare, IconUsers } from '@tabler/icons-react';
 import hasAnyPermission from './Permission';
 import React from 'react'
 
@@ -30,6 +30,13 @@ export default function Menu() {
                     href: route('classrooms.index'),
                     active: url.startsWith('/classrooms/') ? true : false,
                     icon: <IconSchool size={20} strokeWidth={1.5} />,
+                    // permissions: hasAnyPermission(['']),
+                },
+                {
+                    title: 'Pelajar',
+                    href: route('students.index'),
+                    active: url.startsWith('/students/') ? true : false,
+                    icon: <IconUserSquare size={20} strokeWidth={1.5} />,
                     // permissions: hasAnyPermission(['']),
                 },
             ]
