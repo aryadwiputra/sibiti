@@ -82,7 +82,16 @@ class ExamController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //get exam
+        $exam = Exam::with('lesson', 'classroom')->findOrFail($id);
+
+        //get relation questions with pagination
+        $exam->setRelation('questions', $exam->questions()->paginate(5));
+
+        //render with inertia
+        return Inertia::render('Dashboard/Exams/Show', [
+            'exam' => $exam,
+        ]);
     }
 
     /**
