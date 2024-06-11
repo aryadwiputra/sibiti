@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ExamGroupController;
 use App\Http\Controllers\ExamSessionController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PermissionController;
@@ -53,23 +54,25 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     //custom route for create question exam
     Route::get('/exams/{exam}/questions/create', [QuestionController::class, 'create'])->name('exams.questions.create');
-
     //custom route for store question exam
     Route::post('/exams/{exam}/questions/store', [QuestionController::class, 'store'])->name('exams.questions.store');
-
     //custom route for edit question exam
     Route::get('/exams/{exam}/questions/{question}/edit', [QuestionController::class, 'edit'])->name('exams.questions.edit');
-
     //custom route for update question exam
     Route::put('/exams/{exam}/questions/{question}/update', [QuestionController::class, 'update'])->name('exams.questions.update');
-
     //custom route for destroy question exam
     Route::delete('/exams/{exam}/questions/{question}/destroy', [QuestionController::class, 'destroy'])->name('exams.questions.destroy');
 
     //route resource exam_sessions
     Route::resource('/exam_sessions', ExamSessionController::class);
 
+    //custom route for enrolle create
+    Route::get('/exam_sessions/{exam_session}/group/create', [ExamGroupController::class, 'create'])->name('exam_sessions.group.create');
+    //custom route for enrolle store
+    Route::post('/exam_sessions/{exam_session}/group/store', [ExamGroupController::class, 'store'])->name('exam_sessions.group.store');
+    //custom route for enrolle destroy
+    Route::delete('/exam_sessions/{exam_session}/group/{exam_group}/destroy', [ExamGroupController::class, 'destroy'])->name('exam_sessions.group.destroy');
+
 });
 
 require __DIR__ . '/auth.php';
-require __DIR__ . '/admin.php';

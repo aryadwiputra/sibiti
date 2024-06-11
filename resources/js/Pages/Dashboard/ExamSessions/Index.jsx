@@ -239,14 +239,26 @@ export default function Index({ exam_sessions, exams }) {
                                     <Table.Td className='text-center'>
                                         {++i + (exam_sessions.current_page - 1) * exam_sessions.per_page}
                                     </Table.Td>
-                                    <Table.Td>{exam_session.exam.title} - {exam_session.exam.lesson.title} - {exam_session.exam.classroom.title}</Table.Td>
+                                    <Table.Td>
+                                        <strong>{exam_session.exam.title}</strong>
+                                        <ul className='mt-1'>
+                                            <li>Pelajaran : {exam_session.exam.lesson.title}</li>
+                                            <li>Kelas : {exam_session.exam.classroom.title}</li>
+                                        </ul>
+                                    </Table.Td>
                                     <Table.Td>{exam_session.title}</Table.Td>
                                     {/* <Table.Td>{exam_session.exam_session_students.length}</Table.Td> */}
                                     <Table.Td>{exam_session.start_time}</Table.Td>
                                     <Table.Td>{exam_session.end_time}</Table.Td>
                                     <Table.Td>
                                         <div className='flex gap-2 md:justify-center'>
-
+                                            <Button
+                                                type={'link'}
+                                                // icon={<IconEye size={16} strokeWidth={1.5} />}
+                                                className={'border bg-green-100 border-green-300 text-green-500 hover:bg-green-200 dark:bg-green-950 dark:border-green-800 dark:text-gray-300  dark:hover:bg-green-900'}
+                                                href={route('exam_sessions.show', exam_session.id)}
+                                                label={'Detail'}
+                                            />
                                             <Button
                                                 type={'modal'}
                                                 icon={<IconPencilCog size={16} strokeWidth={1.5} />}
