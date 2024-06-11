@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamGroupController;
+use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\ExamSessionController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PermissionController;
@@ -17,18 +18,28 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard/Index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+//route homepage
+Route::get('/', function () {
+    //return view login
+    return Inertia::render('Student/Login/Index');
+});
+
+//login students
+Route::post('/students/login', \App\Http\Controllers\LoginController::class)->name('student.login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -80,6 +91,40 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     //route index reports filter
     Route::get('/reports/filter', [ReportController::class, 'filter'])->name('reports.filter');
+
+});
+
+
+//prefix "student"
+Route::prefix('student')->group(function () {
+
+    //middleware "student"
+    Route::group(['middleware' => 'auth'], function () {
+
+        //route dashboard
+        Route::get('/dashboard', DashboardController::class)->name('student.dashboard');
+
+        //route exam confirmation
+        Route::get('/examination-confirmation/{id}', [ExaminationController::class, 'confirmation'])->name('student.examination.confirmation');
+
+        //route exam start
+        Route::get('/examination-start/{id}', [ExaminationController::class, 'startExam'])->name('student.examination.startExam');
+
+        //route exam show
+        Route::get('/examination/{id}/{page}', [ExaminationController::class, 'show'])->name('student.examination.show');
+
+        //route exam update duration
+        Route::put('/examination-duration/update/{grade_id}', [ExaminationController::class, 'updateDuration'])->name('student.examination.update_duration');
+
+        //route answer question
+        Route::post('/examination-answer', [ExaminationController::class, 'answerQuestion'])->name('student.examination.answerQuestion');
+
+        //route exam end
+        Route::post('/examination-end', [ExaminationController::class, 'endExam'])->name('student.examination.endExam');
+
+        //route exam result
+        Route::get('/examination-result/{exam_group_id}', [ExaminationController::class, 'resultExam'])->name('student.examination.resultExam');
+    });
 
 });
 
