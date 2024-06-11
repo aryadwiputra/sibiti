@@ -59,9 +59,9 @@ export default function Menu() {
                         },
                         {
                             title: 'Sesi Ujian',
-                            // href: route('.create'),
+                            href: route('exam_sessions.index'),
                             icon: <IconClockHour6 size={20} strokeWidth={1.5} />,
-                            active: url === '/users/create' ? true : false,
+                            active: url === '/exam_sessions' ? true : false,
                             permissions: hasAnyPermission(['users-create']),
                         },
                     ]

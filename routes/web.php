@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ExamSessionController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -64,6 +65,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     //custom route for destroy question exam
     Route::delete('/exams/{exam}/questions/{question}/destroy', [QuestionController::class, 'destroy'])->name('exams.questions.destroy');
+
+    //route resource exam_sessions
+    Route::resource('/exam_sessions', ExamSessionController::class);
+
 });
 
 require __DIR__ . '/auth.php';

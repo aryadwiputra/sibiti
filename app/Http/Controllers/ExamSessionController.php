@@ -14,17 +14,21 @@ class ExamSessionController extends Controller
      */
     public function index()
     {
+        // get all exams
+        $exams = Exam::query()->with('classroom', 'lesson')->get();
+
         //get exam_sessions
-        $exam_sessions = ExamSession::when(request()->q, function ($exam_sessions) {
-            $exam_sessions = $exam_sessions->where('title', 'like', '%' . request()->q . '%');
+        $exam_sessions = ExamSession::query()->when(request()->search, function ($exam_sessions) {
+            $exam_sessions = $exam_sessions->where('title', 'like', '%' . request()->search . '%');
         })->with('exam.classroom', 'exam.lesson', 'exam_groups')->latest()->paginate(5);
 
         //append query string to pagination links
-        $exam_sessions->appends(['q' => request()->q]);
+        $exam_sessions->appends(['q' => request()->search]);
 
         //render with inertia
         return Inertia::render('Dashboard/ExamSessions/Index', [
             'exam_sessions' => $exam_sessions,
+            'exams' => $exams,
         ]);
     }
 
