@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { IconBooks, IconCirclePlus, IconClockHour6, IconFileCertificate, IconFileDescription, IconLayout2, IconSchool, IconTable, IconUserBolt, IconUserShield, IconUserSquare, IconUsers } from '@tabler/icons-react';
+import { IconBooks, IconChartBarPopular, IconChartInfographic, IconCirclePlus, IconClockHour6, IconFileCertificate, IconFileDescription, IconLayout2, IconSchool, IconTable, IconUserBolt, IconUserShield, IconUserSquare, IconUsers } from '@tabler/icons-react';
 import hasAnyPermission from './Permission';
 import React from 'react'
 
@@ -65,7 +65,14 @@ export default function Menu() {
                             permissions: hasAnyPermission(['users-create']),
                         },
                     ]
-                }
+                },
+                {
+                    title: 'Laporan',
+                    href: route('reports.index'),
+                    // active: url.startsWith('/students/') ? true : false,
+                    icon: <IconChartBarPopular size={20} strokeWidth={1.5} />,
+                    // permissions: hasAnyPermission(['']),
+                },
             ]
         },
         {

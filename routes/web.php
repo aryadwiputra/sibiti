@@ -9,6 +9,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
@@ -72,6 +73,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::post('/exam_sessions/{exam_session}/group/store', [ExamGroupController::class, 'store'])->name('exam_sessions.group.store');
     //custom route for enrolle destroy
     Route::delete('/exam_sessions/{exam_session}/group/{exam_group}/destroy', [ExamGroupController::class, 'destroy'])->name('exam_sessions.group.destroy');
+
+
+    //route index reports
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+
+    //route index reports filter
+    Route::get('/reports/filter', [ReportController::class, 'filter'])->name('reports.filter');
 
 });
 
