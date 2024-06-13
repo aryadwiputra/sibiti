@@ -54,7 +54,7 @@ class ExaminationController extends Controller
         }
 
         //return with inertia
-        return Inertia::render('Student/Dashboard/Index', [
+        return Inertia::render('Student/Dashboard', [
             'exam_groups' => $data,
         ]);
     }
