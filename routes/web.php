@@ -39,7 +39,7 @@ Route::get('/', function () {
 });
 
 //login students
-Route::post('/students/login', \App\Http\Controllers\LoginController::class)->name('student.login');
+Route::post('/student/login', \App\Http\Controllers\LoginController::class)->name('student.login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -99,10 +99,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 Route::prefix('student')->group(function () {
 
     //middleware "student"
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'student'], function () {
 
         //route dashboard
-        Route::get('/dashboard', DashboardController::class)->name('student.dashboard');
+        Route::get('/dashboard', [ExaminationController::class, 'index'])->name('student.dashboard');
 
         //route exam confirmation
         Route::get('/examination-confirmation/{id}', [ExaminationController::class, 'confirmation'])->name('student.examination.confirmation');
